@@ -1,0 +1,4 @@
+deploy:
+  provider: azure_web_apps
+  verbose: true
+  before_deploy: "npm run predeploy"
