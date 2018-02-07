@@ -3,20 +3,28 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server.js",
-    "watch": "nodemon -L ./server.js"
+    "prestart": "npm run build",
+    "start": "node ./build/Release/server",
+    "watch": "DEBUG=server nodemon -L ./server --exec babel-node --presets airbnb",
+    "clean": "rimraf build",
+    "compile": "babel ./ --presets airbnb --out-dir build/Release --ignore ./node_modules,./LICENSE,./README.md,./package-lock.json --copy-files",
+    "build": "npm run clean && npm run compile"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
-    "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5",
-    "twig": "~0.10.3"
+    "morgan": "~1.9.0"
   },
   "devDependencies": {
-    "nodemon": "^1.14.11"
+    "babel-cli": "^6.26.0",
+    "babel-preset-airbnb": "^2.4.0",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "nodemon": "^1.14.11",
+    "rimraf": "^2.6.2"
   },
   "engines": {
     "node": "8.5.0"
