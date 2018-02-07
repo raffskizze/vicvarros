@@ -1,4 +1,13 @@
+language: node_js
+node_js:
+  - "node"
+cache:
+  directories:
+    - "node_modules"
 deploy:
   provider: azure_web_apps
+  skip_cleanup: true
   verbose: true
   before_deploy: "npm run predeploy"
+  on:
+    node: '8.9.4'
