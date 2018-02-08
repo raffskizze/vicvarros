@@ -4,16 +4,10 @@
  * Module dependencies.
  */
 
-import createDebug from 'debug';
+import debug from 'debug';
 import http from 'http';
 
 import app from './app';
-
-/**
- * Setting debugger
- */
-
-const debug = createDebug('server');
 
 /**
  * Normalize a port into a number, string, or false.
@@ -56,11 +50,11 @@ const onError = (error) => {
   // Handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      debug(`${bind} requires elevated privileges`);
+      debug('error')(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      debug(`${bind} is already in use`);
+      debug('error')(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -75,7 +69,7 @@ const onError = (error) => {
 const onListening = () => {
   const addr = server.address();
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-  debug(`Listening on ${bind}`);
+  debug('info')(`Listening on ${bind}`);
 };
 
 /**
