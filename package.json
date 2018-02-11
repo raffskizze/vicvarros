@@ -4,17 +4,21 @@
   "private": true,
   "scripts": {
     "start": "node ./server",
-    "watch": "DEBUG=info,warn,error nodemon -L ./server --exec babel-node --presets airbnb",
+    "watch": "DEBUG=vicvarros:* nodemon -L ./server --exec babel-node --presets airbnb",
     "clean": "rimraf ./build",
-    "compile": "babel ./ --presets airbnb --out-dir ./build/Release --ignore ./node_modules,./LICENSE,./README.md,./package-lock.json --copy-files",
+    "compile": "babel ./ --presets airbnb --out-dir ./build/Release --ignore ./node_modules,./LICENSE,./README.md,./package-lock.json,./tests --copy-files",
     "build": "npm run clean && npm run compile",
-    "test": "mocha --require babel-core/register"
+    "test": "mocha ./tests --require babel-core/register"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
+    "compression": "^1.7.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "express-routes-versioning": "^1.0.1",
+    "express-validator": "^4.3.0",
+    "helmet": "^3.10.0",
     "morgan": "~1.9.0"
   },
   "devDependencies": {
