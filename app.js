@@ -1,7 +1,7 @@
 import express from 'express';
 
 import registerMiddlewares from './middlewares';
-import handleErrors from './errors';
+import handleErrors from './errors/handler';
 
 import index from './routes/index';
 import users from './routes/users';

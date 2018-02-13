@@ -1,43 +1,44 @@
-import debug from 'debug';
+const errorTypes = {
+  validationError: (errors) => {
+    const error = new Error();
+    error.status = 400;
+    error.message = 'Validation error';
+    error.description = 'Validation error for the current request';
+    error.information = errors;
 
-import notFoundError from './types';
+    return error;
+  },
+  notFoundError: () => {
+    const error = new Error();
+    error.status = 404;
+    error.message = 'Page not found';
+    error.description = 'Page was not found in our server';
 
-const handleErrors = (app) => {
-  /**
-   * Not found
-   */
-  app.use((req, res, next) => {
-    next(notFoundError());
-  });
+    return error;
+  },
+  unauthorizedError: () => {
+    const error = new Error();
+    error.status = 401;
+    error.message = 'Unauthorized';
 
-  /**
-   * Debug error
-   */
-  app.use((err, req, res, next) => {
-    debug('vicvarros:error')(err.message);
-    next(err);
-  });
+    return error;
+  },
+  versionError: () => {
+    const error = new Error();
+    error.status = 404;
+    error.message = 'Version not found';
+    error.description = 'Accept-Version contains a not valid version of the application';
 
-  /**
-   * Error handler
-   */
-  app.use((err, req, res, next) => {
-    // Set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    return error;
+  },
+  deprecatedVersionError: () => {
+    const error = new Error();
+    error.status = 404;
+    error.message = 'Deprecated version';
+    error.description = 'Accept-Version contains a deprecated version of the application, please update it';
 
-    // Render the error json
-    res.status(err.status || 500);
-    res.json({
-      error: {
-        code: err.status,
-        message: err.message,
-        description: err.description,
-        information: err.information,
-      },
-    });
-    next();
-  });
+    return error;
+  },
 };
 
-export default handleErrors;
+export default errorTypes;

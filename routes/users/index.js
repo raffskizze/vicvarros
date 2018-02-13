@@ -1,12 +1,11 @@
 import express from 'express';
 
-import { getList, get } from './methods';
-import userValidator from './validator';
+import methods from './methods';
+import validation from './validation';
 
 const router = express.Router();
 
-router.get('/', getList);
-router.get('/:userId', [userValidator.get], get);
-
+router.get('/', validation.getList, methods.getList);
+router.get('/:userId', validation.get, methods.get);
 
 export default router;

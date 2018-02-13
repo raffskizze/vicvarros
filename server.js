@@ -40,11 +40,11 @@ const onError = (error) => {
   // Handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      debug('vicvarros:server')(`${bind} requires elevated privileges`);
+      debug('debug:server')(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      debug('vicvarros:server')(`${bind} is already in use`);
+      debug('debug:server')(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -58,7 +58,7 @@ const onError = (error) => {
 const onListening = () => {
   const addr = server.address();
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-  debug('vicvarros:server')(`Listening on ${bind}`);
+  debug('debug:server')(`Listening on ${bind}`);
 };
 
 /**
