@@ -4,9 +4,7 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
-/**
- * Function for register middleware
- */
+// Function for register middleware and configure options
 const registerMiddlewares = (app) => {
   // Compression
   app.use(compression());
@@ -23,6 +21,9 @@ const registerMiddlewares = (app) => {
 
   // Cookie parser
   app.use(cookieParser());
+
+  // Setting strong ETags
+  app.set('etag', 'strong');
 };
 
 export default registerMiddlewares;
