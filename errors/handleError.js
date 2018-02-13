@@ -10,8 +10,7 @@ const handleError = (err, req, res, next) => {
       code: err.status,
       message: err.message,
       description: err.description,
-      fileName: err.fileName,
-      lineNumber: err.lineNumber,
+      information: err.information,
     },
   });
   next();

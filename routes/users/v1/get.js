@@ -1,14 +1,16 @@
 import { validationResult } from 'express-validator/check';
 import { matchedData } from 'express-validator/filter';
 
+import { validationError } from './../../../errors/types';
+
 const get = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
     const { userId } = matchedData(req);
-    res.json({ response: `Get v1 ${userId}` });
+    return res.json({ response: `Get v1 ${userId}` });
   }
 
-  next(new Error('TEST'));
+  return next(validationError(errors.mapped()));
 };
 
 export default get;

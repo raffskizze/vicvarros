@@ -1,21 +1,26 @@
 import routesVersioning from 'express-routes-versioning';
 
-import versionError from './../../errors/versionError';
+import { versionError } from './../../errors/types';
 
 import getListV1 from './v1/getList';
 import getV1 from './v1/get';
 
 const versions = routesVersioning();
 
-const getListObject = {
-  '^1.0.0': getListV1,
+const methods = {
+  getList: {
+    '^1.0.0': getListV1,
+  },
+  get: {
+    '^1.0.0': getV1,
+  },
 };
 
-const getObject = {
-  '^1.0.0': getV1,
+const versionCallback = (req, res, next) => {
+  next(versionError());
 };
 
-const getList = versions(getListObject, versionError);
-const get = versions(getObject, versionError);
+const getList = versions(methods.getList, versionCallback);
+const get = versions(methods.get, versionCallback);
 
 export { getList, get };
