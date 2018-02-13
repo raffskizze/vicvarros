@@ -3,6 +3,7 @@ import { matchedData } from 'express-validator/filter';
 
 import errors from './../../../errors';
 
+// Get method
 const get = (req, res, next) => {
   const reqErrors = validationResult(req);
   if (reqErrors.isEmpty()) {

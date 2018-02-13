@@ -2,25 +2,20 @@ import debug from 'debug';
 
 import errors from './';
 
+// Function for handling all errors
 const handleErrors = (app) => {
-  /**
-   * Not found
-   */
+  // Not found
   app.use((req, res, next) => {
     next(errors.notFoundError);
   });
 
-  /**
-   * Debug error
-   */
+  // Debug error
   app.use((err, req, res, next) => {
     debug('debug:error')(err.message);
     next(err);
   });
 
-  /**
-   * Error handler
-   */
+  // Error handler
   app.use((err, req, res, next) => {
     // Set locals, only providing error in development
     res.locals.message = err.message;

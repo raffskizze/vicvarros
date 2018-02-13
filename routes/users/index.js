@@ -5,6 +5,7 @@ import validation from './validation';
 
 const router = express.Router();
 
+// Routing for the resource
 router.get('/', validation.getList, methods.getList);
 router.get('/:userId', validation.get, methods.get);
 

@@ -2,6 +2,7 @@ import { header, param } from 'express-validator/check';
 
 import availableVersions from './../../helpers/availableVersions';
 
+// Validation for the methods
 const validation = {
   get: [
     header('Accept-Version', 'Accept-Version is mandatory').exists(),

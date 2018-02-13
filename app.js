@@ -3,25 +3,17 @@ import express from 'express';
 import registerMiddlewares from './middlewares';
 import handleErrors from './errors/handler';
 
-import index from './routes/index';
 import users from './routes/users';
 
 const app = express();
 
-/**
- * Register middleware
- */
+// Register middleware
 registerMiddlewares(app);
 
-/**
- * Register routes
- */
-app.use('/', index);
+// Register routes
 app.use('/users', users);
 
-/**
- * Handle errors
- */
+// Handle error
 handleErrors(app);
 
 export default app;

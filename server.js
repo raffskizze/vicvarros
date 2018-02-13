@@ -3,9 +3,7 @@ import http from 'http';
 
 import app from './app';
 
-/**
- * Normalize a port into a number, string, or false.
- */
+// Normalize a port into a number, string, or false
 const normalizePort = (val) => {
   const valParsed = parseInt(val, 10);
 
@@ -16,20 +14,14 @@ const normalizePort = (val) => {
   return false;
 };
 
-/**
- * Get port from environment and store in Express.
- */
+// Get port from environment and store in Express
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+// Create HTTP server
 const server = http.createServer(app);
 
-/**
- * Event listener for HTTP server "error" event.
- */
+// Event listener for HTTP server "error" event
 const onError = (error) => {
   if (error.syscall !== 'listen') {
     throw error;
@@ -52,18 +44,14 @@ const onError = (error) => {
   }
 };
 
-/**
- * Event listener for HTTP server "listening" event.
- */
+// Event listener for HTTP server "listening" event
 const onListening = () => {
   const addr = server.address();
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
   debug('debug:server')(`Listening on ${bind}`);
 };
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+// Listen on provided port, on all network interfaces
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);

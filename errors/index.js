@@ -1,3 +1,4 @@
+// Different types of errors
 const errorTypes = {
   validationError: (errors) => {
     const error = new Error();
