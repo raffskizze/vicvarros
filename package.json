@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server",
-    "watch": "DEBUG=debug:* nodemon -L ./server --exec babel-node --presets airbnb",
+    "start": "nodemon ./server --exec babel-node --presets env",
+    "watch": "DEBUG=debug:* nodemon -L ./server --exec babel-node --presets airbnb,es2015,stage-2,env",
     "clean": "rimraf ./build",
-    "compile": "babel ./ --presets airbnb --out-dir ./build/Release --ignore ./node_modules,./LICENSE,./README.md,./package-lock.json,./tests --copy-files",
+    "compile": "babel ./ --presets airbnb,es2015,webpack,stage-2  --out-dir ./build/Release --ignore ./node_modules,./LICENSE,./README.md,./package-lock.json,./tests --copy-files",
     "build": "npm run clean && npm run compile",
     "test": "mocha ./tests --require babel-core/register"
   },
@@ -25,6 +25,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-preset-airbnb": "^2.4.0",
+    "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
     "eslint": "^4.17.0",
