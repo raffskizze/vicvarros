@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./server --exec babel-node --presets env",
-    "watch": "DEBUG=debug:* nodemon -L ./server --exec babel-node --presets airbnb,es2015,stage-2,env",
+    "start": "nodemon ./server --exec babel-node --presets airbnb,env",
+    "watch": "DEBUG=debug:* nodemon -L ./server --exec babel-node --presets airbnb,env",
     "clean": "rimraf ./build",
     "compile": "babel ./ --presets airbnb,es2015,webpack,stage-2  --out-dir ./build/Release --ignore ./node_modules,./LICENSE,./README.md,./package-lock.json,./tests --copy-files",
     "build": "npm run clean && npm run compile",
