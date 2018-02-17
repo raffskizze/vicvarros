@@ -4,9 +4,9 @@ import errors from './';
 
 // Function for handling all errors
 const handleErrors = (app) => {
-  // Not found
+  // Not found nothing until here
   app.use((req, res, next) => {
-    next(errors.notFoundError);
+    next(errors.notFoundError());
   });
 
   // Debug error
