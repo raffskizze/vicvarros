@@ -6,7 +6,7 @@ import errors from './../../../errors';
 const getList = (req, res, next) => {
   const reqErrors = validationResult(req);
   if (reqErrors.isEmpty()) {
-    res.json({ response: 'Get shop list v1' });
+    return res.json({ response: 'Get shop list v1' });
   }
 
   return next(errors.validationError(reqErrors.mapped()));
